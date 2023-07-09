@@ -1,8 +1,9 @@
+/* eslint-disable no-lone-blocks */
 
 import "./App.css";
 
 import React from 'react';
-import {render} from 'react-dom';
+
 
 /* eslint-disable no-undef */
 
@@ -21,7 +22,7 @@ import {render} from 'react-dom';
    * below the button
    */
   // below is function to map over things array and add thing one and two to the page as paragraph
-  // /had to add a key to make sure each strign is unique else youll get an error and it wont work
+  // /had to add a key to make sure each string is unique else youll get an error and it wont work
 
   
   // adding event listener to button
@@ -67,7 +68,7 @@ import {render} from 'react-dom';
 
   // return (
   //   <div>
-      {/* on button click this adds items to the array but only logs them to the console, and keeps adding thign one and two nothing new ? */}
+      {/* on button click this adds items to the array but only logs them to the console, and keeps adding thing one and two nothing new ? */}
       {/* <button onClick={addItem}>Add Item </button> */}
       {/* calling the thingsElements like this just added the array thing one and two  directly to the page, didint do anything with the button  */}
       {/* // so we would add curly brackets aND  call the thingsElements from above to add it to the page */}
@@ -78,7 +79,7 @@ import {render} from 'react-dom';
     {/* </div>
   );
 } */}
-
+// we cant use array.push becuase we can never directly modify our state
 
 
 function App() {
@@ -86,8 +87,10 @@ function App() {
   
   function addItem() {
       const newThingText = `Thing ${things.length + 1}`
+      // ... is an array spread operator 
       setThings(prevState => [...prevState, newThingText])
   }
+  //  setThingsArray(<new value || callback function>) we use a call back functio because we need to know what the old value was 
   
   const thingsElements = things.map(thing => <p key={thing}>{thing}</p>)
   
@@ -98,5 +101,25 @@ function App() {
       </div>
   )
 }
+
+
+// function App() {
+//   const [thingsArray, setThingsArray] = React.useState(["Thing 1", "Thing 2"])
+  // theres a few different thigns in this version but it still sroke, its not as broken down as the one above 
+//   function addItem() {
+//       setThingsArray(prevState => {
+//           return [...prevState, `Thing ${prevState.length + 1}`]
+//       })
+//   }
+  
+//   const thingsElements = thingsArray.map(thing => <p key={thing}>{thing}</p>)
+  
+//   return (
+//       <div>
+//           <button onClick={addItem}>Add Item</button>
+//           {thingsElements}
+//       </div>
+//   )
+// }
 
 export default App;
